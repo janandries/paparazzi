@@ -162,7 +162,10 @@ let rec string_of_value = function
   | Int64 x -> Int64.to_string x
   | Char c -> String.make 1 c
   | String s -> s
-  | Array a -> "|"^(String.concat separator (Array.to_list (Array.map string_of_value a)))^"|"
+  | Array a -> let vl = Array.to_list (Array.map string_of_value a) in
+               match a.(0) with
+                   Char x -> String.concat "" vl
+                 | _ -> "|"^(String.concat separator vl)^"|"
 
 
 let magic = fun x -> (Obj.magic x:('a,'b,'c) Pervasives.format)
