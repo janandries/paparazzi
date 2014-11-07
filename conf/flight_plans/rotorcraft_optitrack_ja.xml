@@ -59,9 +59,8 @@
       <stay wp="p1"/>
     </block>
     <block name="go_p2">
-      <call fun="nav_set_heading_deg(90)"/>
-      <go wp="p2"/>
-      <deroute block="stay_p1"/>
+      <call fun="nav_set_heading_deg(-122)"/>
+      <go approaching_time="0" wp="p2"/>
     </block>
     <block name="line_p1_p2">
       <go from="p1" hmode="route" wp="p2"/>
@@ -70,9 +69,9 @@
       <deroute block="stay_p1"/>
     </block>
     <block name="route">
-      <go from="p1" hmode="route" wp="p3"/>
-      <go from="p3" hmode="route" wp="p4"/>
-      <go from="p4" hmode="route" wp="p1"/>
+      <go from="p1" hmode="route" approaching_time="0" wp="p3"/>
+      <go from="p3" hmode="route" approaching_time="0" wp="p4"/>
+      <go from="p4" hmode="route" approaching_time="0" wp="p1"/>
       <deroute block="stay_p1"/>
     </block>
     <block name="land here" strip_button="Land Here" strip_icon="land-right.png">

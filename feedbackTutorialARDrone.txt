@@ -1,0 +1,7 @@
+3 meter is al redelijk hoog, beter op 2 meter
+
+optitrack tutorial file zit verkeerde configuratie bij, waardoor het optitrack systeem niet helemaal goed werkt. Beter is de nieuwste ' Very High Quality Exeptional (error 0.001mm) 2014_09_25' te pakken.
+
+throttle moet open staan op je joystick om maximale thrust toe te laten
+
+bij bijvoorbeeld het route voorbeeld daar vliegt de drone niet naar wp1 of 2 of 3 omdat (volgens mij) op 3 meter afstand de drone al denkt 
