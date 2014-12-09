@@ -10,17 +10,16 @@
     <waypoint name="HOME" x="0.0" y="0.0"/>
     <waypoint name="CLIMB" x="0.0" y="5.0"/>
     <waypoint name="STDBY" x="0" y="0"/>
-<!--     <waypoint name="GOAL" x="0" y="2.5"/> -->
     <waypoint name="TD" x="5.6" y="-10.9"/>
     <waypoint name="W0" x="5.6" y="-10.9"/>
     <waypoint name="W1" x="5.6" y="-10.9"/>
     <waypoint name="last_wp" x="0" y="0"/>
     <waypoint name="route_START" x="5.6" y="-10.9"/>
-    <waypoint lat="51.990635" lon="4.376836" name="FA1"/>
-    <waypoint lat="51.990606" lon="4.376760" name="FA2"/>
-    <waypoint lat="51.990652" lon="4.376712" name="FA3"/>
-    <waypoint lat="51.990681" lon="4.376791" name="FA4"/>
-    <waypoint lat="51.990670" lon="4.376788" name="GOAL"/>
+    <waypoint lat="51.990616" lon="4.376845" name="FA1"/>
+    <waypoint lat="51.990590" lon="4.376757" name="FA2"/>
+    <waypoint lat="51.990643" lon="4.376708" name="FA3"/>
+    <waypoint lat="51.990672" lon="4.376806" name="FA4"/>
+    <waypoint lat="51.990657" lon="4.376793" name="GOAL"/>
   </waypoints>
   <sectors>
     <sector color="red" name="Flight_Area">
@@ -58,7 +57,7 @@
       <exception cond="electrical.bat_low" deroute="land here"/>
       <call fun="NavSetWaypointHere(WP_STDBY)"/>
       <call fun="NavCopyWaypoint(WP_last_wp,WP_W0)"/>
-      <stay wp="STDBY"/>
+      <stay wp="STDBY" until="stage_time >3"/>
     </block>
     <block name="heading_to_GOAL">
       <exception cond="GpsIsLost() && ((nav_stage>14) || (14> nav_stage) )" deroute="attitude_land"/>
@@ -103,7 +102,6 @@
     </block>
     <block name="land here" strip_button="Land Here" strip_icon="land-right.png">
       <call fun="NavSetWaypointHere(WP_TD)"/>
-<!--       <call fun="mission_decrease_lag()"/> -->
     </block>
     <block name="land">
       <exception cond="GpsIsLost() && ((nav_stage>14) || (14> nav_stage) )" deroute="attitude_land"/>
@@ -113,17 +111,14 @@
       <exception cond="NavDetectGround()" deroute="landed"/>
       <exception cond="!nav_is_in_flight()" deroute="landed"/>
       <call fun="NavStartDetectGround()"/>
-<!--       <call fun="mission_decrease_lag()"/> -->
       <stay climb="-1.0" until="stage_time > 3" vmode="climb" wp="TD"/>
     </block>
     <block name="landed">
       <call fun="NavKillThrottle()"/>
-<!--       <call fun="mission_decrease_lag()"/> -->
       <attitude pitch="0" roll="0" throttle="0" until="FALSE" vmode="throttle"/>
     </block>
     <block name="attitude_land">
-<!--       <call fun="mission_decrease_lag()"/> -->
-      <attitude pitch="0" roll="0" until="stage_time >3" vmode="climb" climb="-1.0"/>
+      <attitude climb="-1.0" pitch="0" roll="0" until="stage_time >3" vmode="climb"/>
       <deroute block="landed"/>
     </block>
   </blocks>
