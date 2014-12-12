@@ -37,6 +37,8 @@
 //Buffer zone in [m] before MAX_DIST_FROM_HOME
 #define BUFFER_ZONE_DIST 10
 
+int32_t mission_lag = 2;
+
 /// Utility function: converts lla (int) to local point (float)
 bool_t mission_point_of_lla(struct EnuCoor_f *point, struct LlaCoor_i *lla) {
   // return FALSE if there is no valid local coordinate system
@@ -124,7 +126,7 @@ static inline bool_t mission_nav_wp(struct _mission_element * el) {
   }
   //Go to Mission Waypoint
   horizontal_mode = HORIZONTAL_MODE_WAYPOINT;
-  VECT3_COPY(navigation_target, *target_wp);
+  INT32_VECT3_COPY(navigation_target, *target_wp);
   NavVerticalAutoThrottleMode(RadOfDeg(0.000000));
   NavVerticalAltitudeMode(POS_FLOAT_OF_BFP(target_wp->z), 0.);
 
