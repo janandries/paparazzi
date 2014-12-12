@@ -16,17 +16,19 @@
    radio="radios/cockpitSX.xml"
    telemetry="telemetry/default_rotorcraft.xml"
    flight_plan="flight_plans/rotorcraft_optitrack_follow.xml"
-   settings=" settings/rotorcraft_basic.xml"
+   settings="settings/rotorcraft_basic.xml"
+   settings_modules=""
    gui_color="#ffff00001ec8"
   />
   <aircraft
    name="leader"
    ac_id="1"
-   airframe="airframes/ardrone2_raw_optitrack.xml"
+   airframe="airframes/ardrone2_raw_optitrack_leader.xml"
    radio="radios/cockpitSX.xml"
    telemetry="telemetry/default_rotorcraft.xml"
-   flight_plan="flight_plans/rotorcraft_optitrack.xml"
-   settings=" settings/rotorcraft_basic.xml"
+   flight_plan="flight_plans/rotorcraft_optitrack_leader.xml"
+   settings="settings/rotorcraft_basic.xml"
+   settings_modules=""
    gui_color="blue"
   />
 </conf>
