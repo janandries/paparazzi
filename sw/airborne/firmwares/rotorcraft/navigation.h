@@ -46,6 +46,9 @@ extern void nav_init(void);
 extern void nav_run(void);
 
 extern uint8_t last_wp __attribute__ ((unused));
+extern bool_t add_mission_goto_wp(void);
+extern bool_t send_mission_segment(uint8_t from_wp, uint8_t to_wp);
+extern bool_t mission_decrease_lag(void);
 
 extern uint8_t horizontal_mode;
 extern struct EnuCoor_i nav_segment_start, nav_segment_end;
@@ -100,7 +103,7 @@ extern bool_t nav_set_heading_current(void);
 #define CARROT 0
 #endif
 
-#define NavKillThrottle() ({ if (autopilot_mode == AP_MODE_NAV) { autopilot_set_motors_on(FALSE); } FALSE; })
+#define NavKillThrottle() ({ if ((autopilot_mode == AP_MODE_NAV) || (autopilot_mode == AP_MODE_FAILSAFE)) { autopilot_set_motors_on(FALSE); } FALSE; })
 #define NavResurrect() ({ if (autopilot_mode == AP_MODE_NAV) { autopilot_set_motors_on(TRUE); } FALSE; })
 
 
